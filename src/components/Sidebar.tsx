@@ -13,6 +13,7 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExportImageDialog } from './ExportImageDialog';
 
 interface LayerGroupData {
   [group: string]: {
@@ -133,6 +134,8 @@ const Sidebar: React.FC = () => {
               </DialogFooter>
             </DialogContent>
           </Dialog>
+
+          <ExportImageDialog />
 
           <input
             ref={fileInputRef}
