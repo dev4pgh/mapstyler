@@ -1,0 +1,63 @@
+{
+  "Roads": {
+    "displayName": "Roads",
+    "layers": {
+      "road_motorway": {
+        "displayName": "Highways",
+        "children": {
+          "road_motorway_casing": "Outline"
+        }
+      },
+      "road_primary": {
+        "displayName": "Primary Roads",
+        "children": {
+          "road_primary_casing": "Outline"
+        }
+      },
+      "road_secondary": {
+        "displayName": "Secondary Roads",
+        "children": {
+          "road_secondary_casing": "Outline"
+        }
+      },
+      "road_tertiary": {
+        "displayName": "Tertiary Roads",
+        "children": {
+          "road_tertiary_casing": "Outline"
+        }
+      },
+      "road_minor": {
+        "displayName": "Minor Roads",
+        "children": {
+          "road_minor_casing": "Outline"
+        }
+      }
+    }
+  },
+  "Water": {
+    "displayName": "Water",
+    "layers": {
+      "water": {
+        "displayName": "Water",
+        "children": {
+          "water_casing": "Outline"
+        }
+      }
+    }
+  },
+  "Labels": {
+    "displayName": "Labels",
+    "layers": {
+      "label_country": "Country Text Labels",
+      "label_state": "State Text Labels",
+      "label_city": "City Text Labels"
+    }
+  },
+  "General": {
+    "displayName": "General",
+    "layers": {
+      "background": "Map Background",
+      "boundary": "Boundaries"
+    }
+  }
+}
