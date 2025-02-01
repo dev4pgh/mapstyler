@@ -2,6 +2,29 @@
 
 MapStyler is a browser-based map style editor, initially created to design a custom print and now shared as a fun, experimental project. While it started as a one-off project, I've tried to generalize it a bit for others to explore and customize their own maps.
 
+## Try It Out 🚀
+
+<video
+autoPlay
+loop
+controls
+playsInline
+muted
+disablePictureInPicture
+src="https://github.com/user-attachments/assets/2adb4d14-5e78-4901-ba12-35985eafd911"
+/>
+
+Ready to start styling? Experiment with our live demo here: https://mapstyler.dev4pgh.com/
+No account or signup is required - jump right in!
+
+1. **Explore layers** in the collapsible sidebar
+2. **Adjust styles** using:
+   - Color pickers for fills/text
+   - Sliders for line widths/sizes
+   - Dropdowns for font selection
+3. **Search Geographic locations** with the map search box (top right)
+4. **Save/load** your custom styles using the toolbar
+
 ## Features 🌟
 
 - **Layer customization** - Toggle visibility and style:
@@ -15,19 +38,6 @@ MapStyler is a browser-based map style editor, initially created to design a cus
   - Browser session auto-save
   - Reset to default configuration
 
-## Try It Out 🚀
-
-Ready to start styling? Experiment with our live demo here: https://mapstyler.dev4pgh.com/
-No account or signup is required - jump right in!
-
-1. **Explore layers** in the collapsible sidebar
-2. **Adjust styles** using:
-   - Color pickers for fills/text
-   - Sliders for line widths/sizes
-   - Dropdowns for font selection
-3. **Search Geographic locations** with the map search box (top right)
-4. **Save/load** your custom styles using the toolbar
-
 ### Local Installation
 
 To run MapStyler locally, you'll need Node.js and npm installed. Then:
@@ -40,6 +50,7 @@ npm run dev
 ```
 
 ## Acknowledgments 🙏
+![mapstyler_demo](https://github.com/user-attachments/assets/f49c1b6a-69a3-4280-839e-56714a294d5e)
 
 This project builds on excellent open source tools:
 - Map data: [OpenFreeMap](https://openfreemap.org/)
