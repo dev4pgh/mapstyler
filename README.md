@@ -4,15 +4,7 @@ MapStyler is a browser-based map style editor, initially created to design a cus
 
 ## Try It Out 🚀
 
-<video
-autoPlay
-loop
-controls
-playsInline
-muted
-disablePictureInPicture
-src="https://github.com/user-attachments/assets/2adb4d14-5e78-4901-ba12-35985eafd911"
-/>
+![mapstyler_demo](https://github.com/user-attachments/assets/580a2a7b-04da-44ff-8af4-9d596c498063)
 
 Ready to start styling? Experiment with our live demo here: https://mapstyler.dev4pgh.com/
 No account or signup is required - jump right in!
@@ -50,7 +42,6 @@ npm run dev
 ```
 
 ## Acknowledgments 🙏
-![mapstyler_demo](https://github.com/user-attachments/assets/f49c1b6a-69a3-4280-839e-56714a294d5e)
 
 This project builds on excellent open source tools:
 - Map data: [OpenFreeMap](https://openfreemap.org/)
