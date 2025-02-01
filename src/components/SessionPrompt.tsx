@@ -15,7 +15,7 @@ interface SessionPromptProps {
 
 const SessionPrompt: React.FC<SessionPromptProps> = ({ onChoice }) => {
   const [open, setOpen] = useState(false);
-  const [savedStyle, setSavedStyle] = useState<any>(null);
+  const [_savedStyle, setSavedStyle] = useState<any>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('mapStyle');

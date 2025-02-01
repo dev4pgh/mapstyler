@@ -26,7 +26,7 @@ export const MapProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [initialized, setInitialized] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
 
-  const loadStyleData = (styleData: any, skipSave = false) => {
+  const loadStyleData = (styleData: any, _skipSave = false) => {
     setStyle(styleData);
     const newVisibility: LayerVisibility = styleData.layers.reduce((acc: LayerVisibility, layer: any) => {
       acc[layer.id] = layer.layout?.visibility !== 'none';
