@@ -4,8 +4,7 @@ MapStyler is a browser-based map style editor, initially created to design a cus
 
 ## Try It Out 🚀
 
-![mapstyler_demo](https://github.com/user-attachments/assets/90f9f4c4-1908-4911-85ae-b96869195f28)
-
+![mapstyler_demo](https://github.com/user-attachments/assets/8398ca4d-2f30-4d04-a4c1-092dd320c3e7)
 
 Ready to start styling? Experiment with our live demo here: https://mapstyler.dev4pgh.com/
 No account or signup is required - jump right in!
@@ -17,6 +16,7 @@ No account or signup is required - jump right in!
    - Dropdowns for font selection
 3. **Search Geographic locations** with the map search box (top right)
 4. **Save/load** your custom styles using the toolbar
+5. **Export styled maps** as images with custom frames and effects
 
 ## Features 🌟
 
@@ -30,6 +30,9 @@ No account or signup is required - jump right in!
   - Save/Load as JSON files
   - Browser session auto-save
   - Reset to default configuration
+- **Image Export** - Save styled maps as PNG with:
+  - 7 frame styles (circle, square, diamond, etc.)
+  - 5 visual effects (vintage, grayscale, sepia, etc.)
 
 ### Local Installation
 
