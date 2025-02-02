@@ -29,10 +29,35 @@ type FrameStyle =
   | "diamond"
   | "hexagon";
 
+type Effect =
+  | "none"
+  | "grayscale"
+  | "sepia"
+  | "invert"
+  | "vintage";
+
+function getFilterString(effect: Effect): string {
+  switch (effect) {
+    case "none":
+      return "none";
+    case "grayscale":
+      return "grayscale(1)";
+    case "sepia":
+      return "sepia(1)";
+    case "invert":
+      return "invert(1)";
+    case "vintage":
+      return "sepia(0.7) saturate(1.2) contrast(1.2)";
+    default:
+      return "none";
+  }
+}
+
 export function ExportImageDialog() {
   const { mapRef } = useMapContext();
   const [open, setOpen] = useState(false);
   const [frameStyle, setFrameStyle] = useState<FrameStyle>("none");
+  const [effect, setEffect] = useState<Effect>("none");
   const [imageURL, setImageURL] = useState<string | null>(null);
 
   const handleExport = () => {
@@ -43,7 +68,7 @@ export function ExportImageDialog() {
       const mapCanvas = mapRef.current!.getCanvas();
       const rawMapDataURL = mapCanvas.toDataURL("image/png");
 
-      // Create an offscreen canvas to apply the mask.
+      // Create an offscreen canvas for processing.
       const offscreen = document.createElement("canvas");
       offscreen.width = mapCanvas.width;
       offscreen.height = mapCanvas.height;
@@ -53,8 +78,10 @@ export function ExportImageDialog() {
       const image = new Image();
       image.src = rawMapDataURL;
       image.onload = () => {
-        // Draw the base map image.
+        ctx.clearRect(0, 0, offscreen.width, offscreen.height);
+        ctx.filter = getFilterString(effect);
         ctx.drawImage(image, 0, 0);
+        ctx.filter = "none";
 
         switch (frameStyle) {
           case "none":
@@ -87,7 +114,7 @@ export function ExportImageDialog() {
       };
     });
 
-    // Force a redraw in case the map needs it.
+    // Trigger a redraw just in case.
     mapRef.current.triggerRepaint();
   };
 
@@ -95,7 +122,7 @@ export function ExportImageDialog() {
     if (!imageURL) return;
     const a = document.createElement("a");
     a.href = imageURL;
-    a.download = `map-export-${frameStyle}.png`;
+    a.download = `map-export-${frameStyle}-${effect}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -112,28 +139,52 @@ export function ExportImageDialog() {
         <DialogHeader>
           <DialogTitle>Save Map Image</DialogTitle>
           <DialogDescription>
-            Choose a frame style and export the map as an image.
+            Choose a frame style and an effect, then export the map as an image.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 mt-4">
-          <Select
-            value={frameStyle}
-            onValueChange={(val: FrameStyle) => setFrameStyle(val)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Frame Style" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="none">No Frame</SelectItem>
-              <SelectItem value="circle">Circle</SelectItem>
-              <SelectItem value="fade">Circle Fade</SelectItem>
-              <SelectItem value="square">Square</SelectItem>
-              <SelectItem value="squareFade">Square Fade</SelectItem>
-              <SelectItem value="roundedSquare">Rounded Square</SelectItem>
-              <SelectItem value="diamond">Diamond</SelectItem>
-              <SelectItem value="hexagon">Hexagon</SelectItem>
-            </SelectContent>
-          </Select>
+          {/* Frame Style Selection */}
+          <div>
+            <span className="block text-sm font-medium mb-1">Frame Style</span>
+            <Select
+              value={frameStyle}
+              onValueChange={(val: FrameStyle) => setFrameStyle(val)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Frame Style" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">No Frame</SelectItem>
+                <SelectItem value="circle">Circle</SelectItem>
+                <SelectItem value="fade">Circle Fade</SelectItem>
+                <SelectItem value="square">Square</SelectItem>
+                <SelectItem value="squareFade">Square Fade</SelectItem>
+                <SelectItem value="roundedSquare">Rounded Square</SelectItem>
+                <SelectItem value="diamond">Diamond</SelectItem>
+                <SelectItem value="hexagon">Hexagon</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {/* Effect Selection */}
+          <div>
+            <span className="block text-sm font-medium mb-1">Effect</span>
+            <Select
+              value={effect}
+              onValueChange={(val: Effect) => setEffect(val)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select Effect" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">No Effect</SelectItem>
+                <SelectItem value="grayscale">Grayscale</SelectItem>
+                <SelectItem value="sepia">Sepia</SelectItem>
+                <SelectItem value="invert">Invert Colors</SelectItem>
+                <SelectItem value="vintage">Vintage</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <div className="flex gap-2">
             <Button variant="secondary" onClick={handleExport}>
               Generate Image
@@ -144,6 +195,7 @@ export function ExportImageDialog() {
               </Button>
             )}
           </div>
+
           {imageURL && (
             <div className="mt-2 border rounded-sm p-2">
               <div className="text-sm font-medium mb-1">Preview:</div>
@@ -179,7 +231,7 @@ function applyFadeMask(ctx: CanvasRenderingContext2D, w: number, h: number) {
   const centerX = w / 2;
   const centerY = h / 2;
   const maxRadius = Math.min(w, h) / 2;
-  const grad = ctx.createRadialGradient(centerX, centerY, maxRadius / 2, centerX, centerY, maxRadius);
+  const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius);
   grad.addColorStop(0, "rgba(255, 255, 255, 1)");
   grad.addColorStop(1, "rgba(255, 255, 255, 0)");
   ctx.globalCompositeOperation = "destination-in";
@@ -213,11 +265,9 @@ function applySquareFade(ctx: CanvasRenderingContext2D, w: number, h: number) {
   const x = (w - size) / 2;
   const y = (h - size) / 2;
 
-  // Fill the square fully opaque.
   maskCtx.fillStyle = "white";
   maskCtx.fillRect(x, y, size, size);
 
-  // Set composite mode to subtract opacity.
   maskCtx.globalCompositeOperation = "destination-out";
   const fadeWidth = size / 4;
 
