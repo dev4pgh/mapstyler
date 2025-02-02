@@ -4,7 +4,8 @@ MapStyler is a browser-based map style editor, initially created to design a cus
 
 ## Try It Out 🚀
 
-![mapstyler_demo](https://github.com/user-attachments/assets/8398ca4d-2f30-4d04-a4c1-092dd320c3e7)
+![mapstyler_demo](https://github.com/user-attachments/assets/90f9f4c4-1908-4911-85ae-b96869195f28)
+
 
 Ready to start styling? Experiment with our live demo here: https://mapstyler.dev4pgh.com/
 No account or signup is required - jump right in!
