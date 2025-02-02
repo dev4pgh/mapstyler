@@ -88,7 +88,7 @@ const Sidebar: React.FC = () => {
     }`}>
 
       <div className="flex flex-col h-full">
-        <div className="flex gap-2 py-3 px-2 border-b border-blue-200">
+        <div className="flex gap-2 py-3 px-2">
           <Button
             onClick={handleSave}
             className="flex-1 bg-blue-800 text-primary-foreground shadow hover:bg-blue-800/90"
@@ -101,7 +101,10 @@ const Sidebar: React.FC = () => {
           >
             Load
           </Button>
+        </div>
 
+        <div className="flex gap-2 pb-3 px-2 border-b border-blue-200">
+          <ExportImageDialog />
           <Dialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
             <DialogTrigger asChild>
               <Button
@@ -134,9 +137,7 @@ const Sidebar: React.FC = () => {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-
-          <ExportImageDialog />
-
+          
           <input
             ref={fileInputRef}
             type="file"
