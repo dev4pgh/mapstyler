@@ -200,8 +200,8 @@ const Sidebar: React.FC = () => {
           )}
         </button>
         <div className='p-3 mb-2 text-sm bg-white border rounded-sm shadow-sm'>
-          <p>This web app was originally created to make our <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="https://pghshop.com/product/pittsburgh-street-map-art-iconic-design-for-steel-city-fans-matte-canvas-stretched-1-25/">Pittsburgh Street Map Art</a> design. We have it printed on a few products you can purchase at <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="https://pghshop.com">PGH Shop</a>!</p>
-          <p className='mt-2 ms-1 text-gray-600 text-xs'>Developed by <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="https://github.com/dev4pgh">Dev4PGH</a></p>
+          <p>This web app was originally created to make our <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="https://pghshop.com/product/pittsburgh-street-map-art-iconic-design-for-steel-city-fans-matte-canvas-stretched-1-25/" target="_blank" rel="noopener">Pittsburgh Street Map Art</a> design. We have it printed on a few products you can purchase at <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="https://pghshop.com" target="_blank" rel="noopener">PGH Shop</a>!</p>
+          <p className='mt-2 ms-1 text-gray-600 text-xs'>Developed by <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="https://dev4pgh.com/" target="_blank" rel="noopener">Dev4PGH</a></p>
         </div>
       </div>
     </div>
